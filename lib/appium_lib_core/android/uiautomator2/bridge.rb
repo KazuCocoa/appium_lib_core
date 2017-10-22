@@ -1,5 +1,3 @@
-require_relative '../../android_uiautomator2'
-
 module Appium
   module Core
     module Android

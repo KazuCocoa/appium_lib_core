@@ -1,5 +1,3 @@
-require_relative '../../android'
-
 module Appium
   module Core
     module Android

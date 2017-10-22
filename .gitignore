@@ -7,3 +7,9 @@
 /pkg/
 /spec/reports/
 /tmp/
+
+# for Mac
+.DS_Store
+
+# for IDE
+.idea

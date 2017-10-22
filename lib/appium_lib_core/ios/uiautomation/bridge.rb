@@ -1,5 +1,3 @@
-require_relative '../../ios'
-
 module Appium
   module Core
     module Ios

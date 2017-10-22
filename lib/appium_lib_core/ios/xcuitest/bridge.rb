@@ -1,5 +1,3 @@
-require_relative '../../ios_xcuitest'
-
 module Appium
   module Core
     module Ios

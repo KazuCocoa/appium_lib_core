@@ -1,5 +1,3 @@
-require_relative '../../android_espresso'
-
 module Appium
   module Core
     module Android
