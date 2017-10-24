@@ -27,14 +27,15 @@ module Appium
       # Alias for type
       alias type send_keys
 
-      # For use with mobile tap.
+      # For use with location_rel.
       #
-      # ```ruby
-      # execute_script 'mobile: tap', :x => 0.0, :y => 0.98
-      # ```
+      # @return [::Selenium::WebDriver::Point] the relative x, y in a struct. ex: { x: 0.50, y: 0.20 }
       #
-      # @return [OpenStruct] the relative x, y in a struct. ex: { x: 0.50, y: 0.20 }
-      def location_rel(driver = $driver)
+      # @example
+      #
+      #   location_rel @driver
+      #
+      def location_rel(driver)
         rect   = self.rect
         location_x = rect.x.to_f
         location_y = rect.y.to_f
@@ -46,8 +47,7 @@ module Appium
         center_y = location_y + (size_height / 2.0)
 
         w = driver.window_size
-        OpenStruct.new(x: "#{center_x} / #{w.width.to_f}",
-                       y: "#{center_y} / #{w.height.to_f}")
+        ::Selenium::WebDriver::Point.new(x: "#{center_x} / #{w.width.to_f}", y: "#{center_y} / #{w.height.to_f}")
       end
     end
   end # module Core

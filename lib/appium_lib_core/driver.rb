@@ -266,7 +266,7 @@ module Appium
       #
       # @example
       #
-      #   @core.wait_true { @driver.find_element :accessibility_id, 'something' }
+      #   @core.wait { @driver.find_element :accessibility_id, 'something' }
       #
       def wait(opts = {})
         opts = process_wait_opts(opts).merge(return_if_true: false)
