@@ -47,7 +47,7 @@ module Appium
         center_y = location_y + (size_height / 2.0)
 
         w = driver.window_size
-        ::Selenium::WebDriver::Point.new(x: "#{center_x} / #{w.width.to_f}", y: "#{center_y} / #{w.height.to_f}")
+        ::Selenium::WebDriver::Point.new "#{center_x} / #{w.width.to_f}", "#{center_y} / #{w.height.to_f}"
       end
     end
   end # module Core

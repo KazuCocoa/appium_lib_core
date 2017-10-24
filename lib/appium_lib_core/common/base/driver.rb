@@ -31,8 +31,19 @@ module Appium
         #   size = @driver.window_size
         #   size.width #=> Integer
         #   size.height #=> Integer
+        #
         def window_size
           manage.window.size
+        end
+
+        # Get the device window's size.
+        # @return [String]
+        #
+        # @example
+        #   @driver.back # back to the previous view
+        #
+        def back
+          navigate.back
         end
       end # class Driver
     end # class Base
