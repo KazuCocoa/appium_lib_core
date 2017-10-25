@@ -170,8 +170,8 @@ module Appium
       # Visible for testing
       # @private
       def swipe_coordinates(start_x: 0, start_y: 0, offset_x: 0, offset_y: 0)
-        raise NotImplementedError,
-              "Please define swipe_coordinates with #{start_x}, #{start_y}, #{offset_x}, #{offset_y}"
+        Appium::Logger.info "start_x: #{start_x}, start_y: #{start_y}, offset_x: #{offset_x}, offset_y: #{offset_y}"
+        { offset_x: offset_x, offset_y: offset_y }
       end
 
       private
