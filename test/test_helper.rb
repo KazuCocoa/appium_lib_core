@@ -26,5 +26,24 @@ class AppiumLibCoreTest
             wait_interval: 1
         }
     }
+
+    ANDROID_OPS = {
+        caps: {
+            platformName: :android,
+            automationName: 'uiautomator2',
+            app: 'test/app/api.apk',
+            platformVersion: '6.0',
+            deviceName: 'Android Emulator',
+            appPackage: 'io.appium.android.apis',
+            appActivity: 'io.appium.android.apis.ApiDemos',
+            some_capability: 'some_capability'
+        },
+        appium_lib: {
+            export_session: true,
+            wait: 30,
+            wait_timeout: 20,
+            wait_interval: 1
+        }
+    }
   end
 end
