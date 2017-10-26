@@ -6,6 +6,9 @@ class AppiumLibCoreTest
     def setup
       @@core ||= ::Appium::Core.for(self, Caps::ANDROID_OPS)
       @@driver ||= @@core.start_driver
+
+      @@driver.start_activity app_package: 'io.appium.android.apis',
+                              app_activity: '.ApiDemos'
     end
 
     def test_value
@@ -38,11 +41,6 @@ class AppiumLibCoreTest
 
       text = @@core.wait { @@driver.find_element :id, 'io.appium.android.apis:id/left_text_edit' }
       assert_equal 'Left is besthello', text.name
-
-      @@driver.back
-      @@driver.back
-      @@driver.back
-      @@driver.back
     end
 
     def test_location_rel
