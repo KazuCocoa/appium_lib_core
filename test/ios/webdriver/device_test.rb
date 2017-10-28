@@ -28,11 +28,17 @@ class AppiumLibCoreTest
 
         @@driver.set_immediate_value e, 'hello'
 
-        e = @@core.wait { @@driver.find_element :name, 'hello' }
+        # Using predicate case
+        e = @@core.wait { @@driver.find_element :predicate, by_predicate('hello') }
 
-        assert_equal 'hello', e.name
+        assert_equal 'Normal', e.name
+        assert_equal 'hello', e.value
 
         @@driver.back
+      end
+
+      def by_predicate(value)
+        %(name ==[c] "#{value}" || label ==[c] "#{value}" || value ==[c] "#{value}")
       end
 
       def test_page_source
