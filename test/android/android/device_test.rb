@@ -12,6 +12,12 @@ class AppiumLibCoreTest
                                 app_activity: '.ApiDemos'
       end
 
+      def test_window_size
+        size = @@driver.window_size
+        assert size.width
+        assert size.height
+      end
+
       def parameterized_method_defined_check(array)
         array.each { |v| assert ::Appium::Core::Base::CoreBridgeOSS.method_defined?(v) }
       end

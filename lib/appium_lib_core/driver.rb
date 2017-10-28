@@ -150,8 +150,26 @@ module Appium
         # Since @automation_name is set only client side before start_driver is called.
         set_automation_name_if_nil
 
+        set_implicit_wait_by_default(@default_wait)
+
         @driver
       end
+
+      private
+
+      # Ignore setting default wait if the target driver has no implementation
+      def set_implicit_wait_by_default(wait)
+        @driver.manage.timeouts.implicit_wait = wait
+      rescue Selenium::WebDriver::Error::UnknownError => e
+        unless e.message.include?('The operation requested is not yet implemented')
+          raise e.message, ::Appium::Core::Error::ServerError
+        end
+
+        Appium::Logger.debug(e.message)
+        {}
+      end
+
+      public
 
       # Quits the driver
       # @return [void]

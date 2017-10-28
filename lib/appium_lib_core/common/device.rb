@@ -262,7 +262,6 @@ module Appium
             end
           end
 
-          # TODO: TEST ME
           add_endpoint_method(:pull_folder) do
             def pull_folder(path)
               data = execute :pull_folder, {}, path: path
