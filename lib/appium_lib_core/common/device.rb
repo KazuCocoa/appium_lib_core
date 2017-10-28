@@ -5,144 +5,262 @@ module Appium
     module Device
       extend Forwardable
 
-      # @!method app_strings
-      #   Return the hash of all localization strings.
-      #   ```ruby
-      #   app_strings #=> "TransitionsTitle"=>"Transitions", "WebTitle"=>"Web"
-      #   ```
-
-      # @!method background_app
-      #  Backgrounds the app for a set number of seconds.
-      #  This is a blocking application
-      # @param [Integer] seconds How many seconds to background the app for.
-      #
-      #   ```ruby
-      #   background_app
-      #   background_app(5)
-      #   background_app(-1) #=> the app never come back. https://github.com/appium/appium/issues/7741
-      #   ```
+      ####
+      ## No argument
+      ####
 
       # @!method current_activity
-      #   Get current activity name
-      #   @return [String] An activity name
+      # Get current activity name
+      # @return [String] An activity name
       #
-      #   ```ruby
-      #   current_activity # '.ApiDemos'
-      #   ```
+      # @example
+      #
+      #   @driver.current_activity # '.ApiDemos'
+      #
 
       # @!method current_package
-      #   Get current package name
-      #   @return [String] A package name
+      # Get current package name
+      # @return [String] A package name
       #
-      #   ```ruby
-      #   current_package # 'com.example.android.apis'
-      #   ```
+      # @example
+      #
+      #   @driver.current_package # 'com.example.android.apis'
+      #
 
       # @!method get_system_bars
-      #   Get system bar's information
-      #   @return [String] System bar
+      # Get system bar's information
+      # @return [String]
       #
-      #   ```ruby
-      #   get_system_bars
-      #   ```
+      # @example
+      #
+      #   @driver.get_system_bars
+      #
 
       # @!method get_display_density
-      #   Get connected device's density.
-      #   @return [Integer] The size of density
+      # Get connected device's density.
+      # @return [Integer] The size of density
       #
-      #   ```ruby
-      #   get_display_density # 320
-      #   ```
+      # @example
+      #
+      #   @driver.get_display_density # 320
+      #
 
       # @!method is_keyboard_shown
-      #   Get whether keyboard is displayed or not.
-      #   @return [Bool] Return true if keyboard is shown. Return false if keyboard is hidden.
+      # Get whether keyboard is displayed or not.
+      # @return [Bool] Return true if keyboard is shown. Return false if keyboard is hidden.
       #
-      #   ```ruby
-      #   is_keyboard_shown # false
-      #   ```
+      # @example
+      #   @driver.is_keyboard_shown # false
+      #
 
       # @!method launch_app
-      #   Start the simulator and application configured with desired capabilities
+      # Start the simulator and application configured with desired capabilities
+      #
+      # @example
+      #
+      #   @driver.launch_app
+      #
 
       # @!method reset
-      #   Reset the device, relaunching the application.
+      # Reset the device, relaunching the application.
+      #
+      # @example
+      #
+      #   @driver.reset
+      #
 
       # @!method shake
-      #   Cause the device to shake
+      # Cause the device to shake
+      #
+      # @example
+      #
+      #   @driver.shake
+      #
 
       # @!method toggle_flight_mode
-      #   Toggle flight mode on or off
+      # Toggle flight mode on or off
+      #
+      # @example
+      #
+      #   @driver.toggle_flight_mode
+      #
 
       # @!method device_locked?
-
-      # @!method hide_keyboard
-      #   Hide the onscreen keyboard
-      #   @param [String] close_key The name of the key which closes the keyboard.
-      #     Defaults to 'Done' for iOS(except for XCUITest).
-      #   @param [Symbol] strategy The symbol of the strategy which closes the keyboard.
-      #     XCUITest ignore this argument.
-      #     Default for iOS is `:pressKey`. Default for Android is `:tapOutside`.
-      #  ```ruby
-      #  hide_keyboard # Close a keyboard with the 'Done' button
-      #  hide_keyboard('Finished') # Close a keyboard with the 'Finished' button
-      #  hide_keyboard(nil, :tapOutside) # Close a keyboard with tapping out side of keyboard
-      #  ```
-
-      # @!method press_keycode
-      # Press keycode on the device.
-      # http://developer.android.com/reference/android/view/KeyEvent.html
-      # @param [integer] key The key to press.
-      # @param [String] metastate The state the metakeys should be in when pressing the key.
-
-      # @!method long_press_keycode
-      # Long press keycode on the device.
-      # http://developer.android.com/reference/android/view/KeyEvent.html
-      # @param [integer] key The key to long press.
-      # @param [String] metastate The state the metakeys should be in when long pressing the key.
-
-      # @!method push_file
-      #   Place a file in a specific location on the device.
-      #   @param [String] path The absolute path on the device to store data at.
-      #   @param [String] data Raw file data to be sent to the device.
-
-      # @!method pull_file
-      #   Retrieve a file from the device.  This can retrieve an absolute path or
-      #   a path relative to the installed app (iOS only).
-      #   @param [String] path Either an absolute path OR, for iOS devices, a path relative to the app, as described.
+      # Check current device status is weather locked or not
       #
-      #   ```ruby
-      #   pull_file '/local/data/some/path' #=> Get the file at that path
-      #   pull_file 'Shenanigans.app/some/file' #=> Get 'some/file' from the install location of Shenanigans.app
-      #   ```
-
-      # @!method pull_folder
-      #   Retrieve a folder from the device.
-      #   @param [String] path absolute path to the folder
+      # @example
       #
-      #   ```ruby
-      #   pull_folder '/data/local/tmp' #=> Get the folder at that path
-      #   ```
-
-      # @!method get_settings
-      #   Get appium Settings for current test session
-
-      # @!method update_settings
-      #   Update appium Settings for current test session
-      #   @param [Hash] settings Settings to update, keys are settings, values to value to set each setting to
-
-      # @!method set_immediate_value
-      #   Set the value to element directly
-      #   for iOS; setValue is called in XCUITest instead because XCUITest doesn't provide set value directly.
-      #   https://github.com/appium/appium-xcuitest-driver/blob/793cdc7d5e84bd553e375076e1c6dc7e242c9cde/lib/commands/element.js#L123
+      #   @driver.device_locked?
       #
-      #   ```ruby
-      #   set_immediate_value element, 'hello'
-      #   ```
 
       # @!method get_network_connection
       #   Get the device network connection current status
       #   See set_network_connection method for return value
+
+      ####
+      ## With arguments
+      ####
+
+      # @!method app_strings(language = nil)
+      # Return the hash of all localization strings.
+      # @return [Hash]
+      #
+      # @example
+      #
+      #   @driver.app_strings #=> "TransitionsTitle"=>"Transitions", "WebTitle"=>"Web"
+      #
+
+      # @!method background_app(duration = 0)
+      # Backgrounds the app for a set number of seconds.
+      # This is a blocking application
+      # @param [Integer] duration How many seconds to background the app for.
+      # @return [String]
+      #
+      # @example
+      #
+      #   @driver.background_app
+      #   @driver.background_app(5)
+      #   @driver.background_app(-1) #=> the app never come back. https://github.com/appium/appium/issues/7741
+      #
+
+      # @!method hide_keyboard(close_key = nil, strategy = nil)
+      # Hide the onscreen keyboard
+      # @param [String] close_key The name of the key which closes the keyboard.
+      #   Defaults to 'Done' for iOS(except for XCUITest).
+      # @param [Symbol] strategy The symbol of the strategy which closes the keyboard.
+      #   XCUITest ignore this argument.
+      #   Default for iOS is `:pressKey`. Default for Android is `:tapOutside`.
+      #
+      # @example
+      #
+      #   @driver.hide_keyboard # Close a keyboard with the 'Done' button
+      #   @driver.hide_keyboard('Finished') # Close a keyboard with the 'Finished' button
+      #   @driver.hide_keyboard(nil, :tapOutside) # Close a keyboard with tapping out side of keyboard
+      #
+
+      # @!method press_keycode(key, metastate = nil)
+      # Press keycode on the device.
+      # http://developer.android.com/reference/android/view/KeyEvent.html
+      # @param [integer] key The key to press.
+      # @param [String] metastate The state the metakeys should be in when pressing the key.
+      #
+      # @example
+      #
+      #   @driver.press_keycode 82
+      #
+
+      # @!method long_press_keycode(key, metastate = nil)
+      # Long press keycode on the device.
+      # http://developer.android.com/reference/android/view/KeyEvent.html
+      # @param [integer] key The key to long press.
+      # @param [String] metastate The state the metakeys should be in when long pressing the key.
+      #
+      # @example
+      #
+      #   @driver.long_press_keycode 82
+      #
+
+      # @!method push_file(path, filedata)
+      # Place a file in a specific location on the device.
+      # @param [String] path The absolute path on the device to store data at.
+      # @param [String] filedata Raw file data to be sent to the device. Converted to base64 in the method.
+      #
+      # @example
+      #
+      #   @driver.push_file "/file/to/path", data
+      #
+
+      # @!method pull_file(path)
+      # Retrieve a file from the device.  This can retrieve an absolute path or
+      # a path relative to the installed app (iOS only).
+      # @param [String] path Either an absolute path OR, for iOS devices, a path relative to the app, as described.
+      #
+      # @example
+      #
+      #   @driver.pull_file '/local/data/some/path'     #=> Get the file at that path
+      #   @driver.pull_file 'Shenanigans.app/some/file' #=> Get 'some/file' from the install location of Shenanigans.app
+      #
+
+      # @!method pull_folder(path)
+      # Retrieve a folder from the device.
+      # @param [String] path absolute path to the folder
+      #
+      # @example
+      #
+      #   @driver.pull_folder '/data/local/tmp' #=> Get the folder at that path
+      #
+
+      # @!method get_settings
+      # Get appium Settings for current test session
+      #
+      # @example
+      #
+      #   @driver.pull_folder '/data/local/tmp' #=> Get the folder at that path
+      #
+
+
+      # @!method update_settings(settings)
+      # Update Appium Settings for current test session
+      # @param [Hash] settings Settings to update, keys are settings, values to value to set each setting to
+      #
+      # @example
+      #
+      #   @driver.update_settings('allowInvisibleElements': true)
+      #
+
+      # @!method set_immediate_value(element, *value)
+      #   Set the value to element directly
+      #
+      # @example
+      #
+      #   set_immediate_value element, 'hello'
+      #
+
+
+      # @!method ime_activate(ime_name)
+      # Android only. Make an engine that is available active.
+      # @param [String] ime_name The IME owning the activity [required]
+      #
+      # @example
+      #
+      #   ime_activate engine: 'com.android.inputmethod.latin/.LatinIME'
+      #
+
+      # @!method ime_available_engines
+      # Android only. List all available input engines on the machine.
+      #
+      # @example
+      #
+      #   ime_available_engines #=> Get the list of IME installed in the target device
+      #
+
+      # @!method ime_active_engine
+      # Android only. Get the name of the active IME engine.
+      #
+      # @example
+      #
+      #   ime_active_engine #=> Get the current active IME such as 'com.android.inputmethod.latin/.LatinIME'
+      #
+
+      # @!method ime_activated
+      #   Android only. Indicates whether IME input is active at the moment (not if it is available).
+      #
+      # @example
+      #
+      #   ime_activated #=> True if IME is activated
+      #
+
+      # @!method ime_deactivate
+      # Android only. De-activates the currently-active IME engine.
+      #
+      # @example
+      #
+      #   ime_deactivate #=> Deactivate current IME engine
+      #
+
+      ####
+      ## class << self
+      ####
 
       class << self
         def extended(_mod)
@@ -340,19 +458,6 @@ module Appium
         end
 
         def add_ime_actions
-          # Commands for IME are defined in the following commands.rb, but the driver have no bridge.
-          # So, appium_lib define just bridge here.
-          # https://github.com/SeleniumHQ/selenium/blob/selenium-3.0.1/rb/lib/selenium/webdriver/remote/commands.rb#L184-L192
-
-          # @!method ime_activate
-          #   Make an engine that is available active.
-          #
-          #   Android only.
-          #   @param [String] The IME owning the activity [required]
-          #
-          #   ```ruby
-          #   ime_activate engine: 'com.android.inputmethod.latin/.LatinIME'
-          #   ```
           add_endpoint_method(:ime_activate) do
             def ime_activate(ime_name)
               # from Selenium::WebDriver::Remote::OSS
@@ -360,26 +465,12 @@ module Appium
             end
           end
 
-          # @!method ime_available_engines
-          #   List all available input engines on the machine.
-          #   Android only.
-          #
-          #   ```ruby
-          #   ime_available_engines #=> Get the list of IME installed in the target device
-          #   ```
           add_endpoint_method(:ime_available_engines) do
             def ime_available_engines
               execute :ime_get_available_engines
             end
           end
 
-          # @!method ime_active_engine
-          #   Get the name of the active IME engine.
-          #   Android only.
-          #
-          #   ```ruby
-          #   ime_active_engine #=> Get the current active IME such as 'com.android.inputmethod.latin/.LatinIME'
-          #   ```
           add_endpoint_method(:ime_active_engine) do
             # from Selenium::WebDriver::Remote::OSS
             def ime_active_engine
@@ -387,13 +478,6 @@ module Appium
             end
           end
 
-          # @!method ime_activated
-          #   Indicates whether IME input is active at the moment (not if it is available).
-          #   Android only.
-          #
-          #   ```ruby
-          #   ime_activated #=> True if IME is activated
-          #   ```
           add_endpoint_method(:ime_activated) do
             # from Selenium::WebDriver::Remote::OSS
             def ime_activated
@@ -401,14 +485,6 @@ module Appium
             end
           end
 
-          # @!method ime_deactivate
-          #   De-activates the currently-active IME engine.
-          #
-          #   Android only.
-          #
-          #   ```ruby
-          #   ime_deactivate #=> Deactivate current IME engine
-          #   ```
           add_endpoint_method(:ime_deactivate) do
             # from Selenium::WebDriver::Remote::OSS
             def ime_deactivate
@@ -418,28 +494,40 @@ module Appium
         end
       end # class << self
 
-      # @!method set_context
-      #   Change the context to the given context.
-      #   @param [String] The context to change to
+      # @!method set_context(context)
+      # Change the context to the given context.
+      # @param [String] context The context to change to
       #
-      #   ```ruby
-      #   set_context "NATIVE_APP"
-      #   ```
+      # @example
+      #
+      #   @driver.set_context "NATIVE_APP"
+      #
 
       # @!method current_context
-      #   @return [String] The context currently being used.
+      # @return [String] The context currently being used.
+      #
+      # @example
+      #
+      #   @driver.current_context
+      #
 
       # @!method available_contexts
-      #   @return [Array<String>] All usable contexts, as an array of strings.
+      # @return [Array<String>] All usable contexts, as an array of strings.
+      #
+      # @example
+      #
+      #   @driver.available_contexts
+      #
 
       # Perform a block within the given context, then switch back to the starting context.
-      # @param context (String) The context to switch to for the duration of the block.
+      # @param [String] context The context to switch to for the duration of the block.
       #
-      # ```ruby
-      # result = within_context('NATIVE_APP') do
-      #   find_element :tag, "button"
-      # end # The result of `find_element :tag, "button"`
-      # ```
+      # @example
+      #
+      #   result = @driver.within_context('NATIVE_APP') do
+      #     @driver.find_element :tag, "button"
+      #   end # The result of `find_element :tag, "button"`
+      #
       def within_context(context)
         existing_context = current_context
         set_context context
@@ -452,10 +540,15 @@ module Appium
         end
       end
 
-      # Change to the default context.  This is equivalent to `set_context nil`.
+      # Change to the default context. This is equivalent to `set_context nil`.
+      #
+      # @example
+      #
+      #   @driver.switch_to_default_context
+      #
       def switch_to_default_context
         set_context nil
       end
     end # module Device
-  end # Core
+  end # module Core
 end # module Appium

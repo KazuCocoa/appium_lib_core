@@ -1,7 +1,7 @@
 module Appium
   module Core
     # Implement useful features for element.
-    class Selenium::WebDriver::Element # rubocop:disable Style/ClassAndModuleChildren
+    class Selenium::WebDriver::Element
       # Note: For testing .text should be used over value, and name.
 
       # Returns the value attribute

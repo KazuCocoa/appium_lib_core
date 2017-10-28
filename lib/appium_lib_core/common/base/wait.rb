@@ -24,7 +24,6 @@ module Appium
 
         # Wait code from the selenium Ruby gem
         # https://github.com/SeleniumHQ/selenium/blob/cf501dda3f0ed12233de51ce8170c0e8090f0c20/rb/lib/selenium/webdriver/common/wait.rb
-        # @override
         def until
           end_time   = Time.now + @timeout
           last_error = nil
@@ -37,7 +36,7 @@ module Appium
               return result if result
             rescue ::Errno::ECONNREFUSED => e
               raise e
-            rescue *@ignored => last_error # rubocop:disable Lint/HandleExceptions
+            rescue *@ignored => last_error
               # swallowed
             end
 

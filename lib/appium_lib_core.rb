@@ -26,7 +26,7 @@ module Appium
     raise 'symbolize_keys requires a hash' unless hash.is_a? Hash
     result = {}
     hash.each do |key, value|
-      key = key.to_sym rescue key # rubocop:disable Style/RescueModifier
+      key = key.to_sym rescue key
       result[key] = value.is_a?(Hash) ? symbolize_keys(value) : value
     end
     result
@@ -61,8 +61,8 @@ module Appium
     #     @core_driver = Appium::Core.for(self, opts) # create a core driver with `opts` and extend methods into `self`
     #     @core_driver.start_driver(server_url: server_url, http_client_ops: http_client_ops) # start driver
     #
-    def self.for(*args)
-      Core::Driver.for(*args)
+    def self.for(target, opts = {})
+      Core::Driver.for(target, opts)
     end
   end
 end

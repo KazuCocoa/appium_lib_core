@@ -4,27 +4,34 @@ module Appium
       module Device
         extend Forwardable
 
-        # @!method hide_keyboard
-        #   Hide the onscreen keyboard
-        #   @param [String] close_key The name of the key which closes the keyboard.
-        #   @param [Symbol] strategy The symbol of the strategy which closes the keyboard.
-        #     XCUITest ignore this argument.
-        #     Default for iOS is `:pressKey`. Default for Android is `:tapOutside`.
-        #  ```ruby
-        #  hide_keyboard # Close a keyboard with the 'Done' button
-        #  hide_keyboard('Finished') # Close a keyboard with the 'Finished' button
-        #  ```
-
-        # @!method background_app
-        #  Backgrounds the app for a set number of seconds.
-        #  This is a blocking application
-        # @param [Integer] seconds How many seconds to background the app for.
+        # @!method hide_keyboard(close_key = nil, strategy = nil)
+        # Hide the onscreen keyboard
+        # @param [String] close_key The name of the key which closes the keyboard.
+        # @param [Symbol] strategy The symbol of the strategy which closes the keyboard.
+        #   XCUITest ignore this argument.
+        #   Default for iOS is `:pressKey`. Default for Android is `:tapOutside`.
         #
-        #   ```ruby
-        #   background_app
-        #   background_app(5)
-        #   background_app(-1) #=> the app never come back. https://github.com/appium/appium/issues/7741
-        #   ```
+        # @example
+        #
+        #  @driver.hide_keyboard             # Close a keyboard with the 'Done' button
+        #  @driver.hide_keyboard('Finished') # Close a keyboard with the 'Finished' button
+        #
+
+        # @!method background_app(duration = 0)
+        # Backgrounds the app for a set number of seconds.
+        # This is a blocking application.
+        # @param [Integer] duration How many seconds to background the app for.
+        #
+        # @example
+        #
+        #   @driver.background_app
+        #   @driver.background_app(5)
+        #   @driver.background_app(-1) #=> the app never come back. https://github.com/appium/appium/issues/7741
+        #
+
+        ####
+        ## class << self
+        ####
 
         class << self
           def extended(_mod)
