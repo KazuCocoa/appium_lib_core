@@ -1,6 +1,25 @@
+language: objective-c
 sudo: false
-language: ruby
+osx_image: xcode9.0
+
+cache: bundler
+
 rvm:
-  - 2.2
   - 2.4.0
+
 before_install: gem install bundler -v 1.14.3
+
+install:
+  - bundle install
+  - npm install -g appium@1.7.1
+
+before_script:
+  - appium --log-level warn &
+
+script:
+  - bundle exec rake ios
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
