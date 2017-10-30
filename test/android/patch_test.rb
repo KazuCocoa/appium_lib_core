@@ -37,10 +37,10 @@ class AppiumLibCoreTest
       @@core.wait { @@driver.find_element :accessibility_id, 'Activity' }.click
       @@core.wait { @@driver.find_element :accessibility_id, 'Custom Title' }.click
 
-      @@core.wait { @@driver.find_element :id, 'io.appium.android.apis:id/left_text_edit' }.type 'hello'
+      @@core.wait { @@driver.find_element :id, 'io.appium.android.apis:id/left_text_edit' }.type 'Pökémön'
 
       text = @@core.wait { @@driver.find_element :id, 'io.appium.android.apis:id/left_text_edit' }
-      assert_equal 'Left is besthello', text.name
+      assert_equal 'Left is bestPökémön', text.name
     end
 
     def test_location_rel

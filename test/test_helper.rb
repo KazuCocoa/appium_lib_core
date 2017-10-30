@@ -32,11 +32,13 @@ class AppiumLibCoreTest
             platformName: :android,
             automationName: 'uiautomator2',
             app: 'test/app/api.apk',
-            platformVersion: '6.0',
+            platformVersion: '7.1.1',
             deviceName: 'Android Emulator',
             appPackage: 'io.appium.android.apis',
             appActivity: 'io.appium.android.apis.ApiDemos',
-            some_capability: 'some_capability'
+            some_capability: 'some_capability',
+            unicodeKeyboard: true,
+            resetKeyboard: true
         },
         appium_lib: {
             export_session: true,
